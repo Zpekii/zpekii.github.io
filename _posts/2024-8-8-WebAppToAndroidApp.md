@@ -140,7 +140,7 @@ npx cap add android
 
 **官方文档相关说明**：[Static site generation • Docs • SvelteKit](https://kit.svelte.dev/docs/adapter-static#options-precompress)
 
-> ### precompress
+> precompress
 >
 > If `true`, precompresses files with brotli and gzip. This will generate `.br` and `.gz` files.
 
