@@ -226,8 +226,6 @@ npx cap sync
 
 <img src="/assets/img/2024-8-8-WebAppToAndroidApp.assets/image-20240808231225765.png" alt="image-20240808231225765" />
 
-<img src="/assets/img/2024-8-8-WebAppToAndroidApp.assets/image-20240808231238265.png" alt="image-20240808231238265" />
-
 **可点击下方"Build"查看build情况，若在build过程中遇到网络问题，可参照上面提供的<a href="#因网络问题无法正常下载sdk等解决方案">方案</a>尝试解决**
 
 <img src="/assets/img/2024-8-8-WebAppToAndroidApp.assets/image-20240808231336005.png" alt="image-20240808231336005" />
