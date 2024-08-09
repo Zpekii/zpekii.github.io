@@ -18,7 +18,7 @@ description:如何使用capaitor将web app 封装成android app,即封装成可�
 
 ## 需求/准备:
 
-- 一个可正常构建的项目(即可正常通过执行npm run build``构建并打包成一个build``或`dist`的输出目录)
+- 一个可正常构建的项目(即可正常通过执行 `npm run build`构建并打包成一个`build`或`dist`的输出目录)
 - `nodejs`
 - `android studio`
 - `android sdk`
@@ -30,63 +30,61 @@ description:如何使用capaitor将web app 封装成android app,即封装成可�
 
 ### 下载`android studio`
 
-![image-20240808220041619](.\2024-8-8-pictures\image-20240808220041619.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808220041619.png" alt="image-20240808220041619" />
 
-![image-20240808220100867](.\2024-8-8-pictures\image-20240808220100867.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808220100867.png" alt="image-20240808220100867" />
 
 ### 安装并启动`android studio`
 
-![image-20240808220510537](.\2024-8-8-pictures\image-20240808220510537.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808220820112.png" alt="image-20240808220820112" />
 
-![image-20240808220820112](.\2024-8-8-pictures\image-20240808220820112.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808220843176.png" alt="image-20240808220843176" />
 
-![image-20240808220843176](.\2024-8-8-pictures\image-20240808220843176.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808220849897.png" alt="image-20240808220849897" />
 
-![image-20240808220849897](.\2024-8-8-pictures\image-20240808220849897.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808220855438.png" alt="image-20240808220855438" />
 
-![image-20240808220855438](.\2024-8-8-pictures\image-20240808220855438.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808220904573.png" alt="image-20240808220904573" />
 
-![image-20240808220904573](.\2024-8-8-pictures\image-20240808220904573.png)
-
-![image-20240808220915832](.\2024-8-8-pictures\image-20240808220915832.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808220915832.png" alt="image-20240808220915832" />
 
 
 
 ### 打开`SDK manager`
 
-![image-20240808221237189](.\2024-8-8-pictures\image-20240808221237189.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221237189.png" alt="image-20240808221237189" />
 
-![image-20240808221249489](.\2024-8-8-pictures\image-20240808221249489.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221249489.png" alt="image-20240808221249489" />
 
 ### 选择一个安卓版本的`sdk`,这里我选择`Android 14`
 
-![image-20240808221406978](.\2024-8-8-pictures\image-20240808221406978.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221406978.png" alt="image-20240808221406978" />
 
-### 其他安装
+### 其他安装（可选）
 
-![image-20240808221457136](.\2024-8-8-pictures\image-20240808221457136.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221457136.png" alt="image-20240808221457136" />
 
-![image-20240808221514899](.\2024-8-8-pictures\image-20240808221514899.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221514899.png" alt="image-20240808221514899" />
 
-![image-20240808221529149](.\2024-8-8-pictures\image-20240808221529149.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221529149.png" alt="image-20240808221529149" />
 
-![image-20240808221542378](.\2024-8-8-pictures\image-20240808221542378.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221542378.png" alt="image-20240808221542378" />
 
-![image-20240808221644243](.\2024-8-8-pictures\image-20240808221644243.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221644243.png" alt="image-20240808221644243" />
 
 ### 点击"Apply"确认安装
 
-### **因网络问题无法正常下载sdk等解决方案**
+### 因网络问题无法正常下载sdk等解决方案
 
 - 打开设置
 
-  ![image-20240808221842952](.\2024-8-8-pictures\image-20240808221842952.png)
+  <img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221842952.png" alt="image-20240808221842952" />
 
 - 找到代理设置，设置代理端口(与自己使用的代理软件监听端口一致)
 
-  ![image-20240808221950198](.\2024-8-8-pictures\image-20240808221950198.png)
+  <img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808221950198.png" alt="image-20240808221950198" />
 
-  ![image-20240808222056667](.\2024-8-8-pictures\image-20240808222056667.png)
+  <img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808222056667.png" alt="image-20240808222056667" />
 
 ## 在项目中安装`capacitor`
 
@@ -98,7 +96,7 @@ description:如何使用capaitor将web app 封装成android app,即封装成可�
 npm install
 ```
 
-![image-20240808213939141](.\2024-8-8-pictures\image-20240808213939141.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808213939141.png" alt="image-20240808213939141" />
 
 ### 执行`npm i @capacitor/core`安装`capacitor`核心包
 
@@ -118,7 +116,7 @@ npm i -D @capacitor/cli
 npx cap init
 ```
 
-![image-20240808215213709](.\2024-8-8-pictures\image-20240808215213709.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808215213709.png" alt="image-20240808215213709" />
 
 ### 执行`npm install @capacitor/android`安装`@capacitor/android`包
 
@@ -126,7 +124,7 @@ npx cap init
 npm install @capacitor/android
 ```
 
-![image-20240808214245668](.\2024-8-8-pictures\image-20240808214245668.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808214245668.png" alt="image-20240808214245668" />
 
 ### 执行`npx cap add android`创建安卓项目,成功创建后将生成`android`项目目录
 
@@ -134,9 +132,9 @@ npm install @capacitor/android
 npx cap add android
 ```
 
-![image-20240808215557219](.\2024-8-8-pictures\image-20240808215557219.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808215557219.png" alt="image-20240808215557219" />
 
-![image-20240808215706026](.\2024-8-8-pictures\image-20240808215706026.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808215706026.png" alt="image-20240808215706026" />
 
 ## 构建项目并同步到安卓项目中
 
@@ -186,7 +184,7 @@ export default config;
 
 ```
 
-![image-20240808225709443](.\2024-8-8-pictures\image-20240808225709443.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808225709443.png" alt="image-20240808225709443" />
 
 ### 执行`npm run build`构建web项目
 
@@ -194,9 +192,9 @@ export default config;
 npm run build
 ```
 
-![image-20240808225541397](.\2024-8-8-pictures\image-20240808225541397.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808225541397.png" alt="image-20240808225541397" />
 
-![image-20240808225550738](.\2024-8-8-pictures\image-20240808225550738.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808225550738.png" alt="image-20240808225550738" />
 
 ### 修改`capacitor.config.ts`web项目目录配置
 
@@ -206,7 +204,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.zpekii.app',
   appName: 'myapp',
-  webDir: 'build'// 原来为"dist",因为sveltekit构建后生成的是build目录，所有我需要做相应更改以正确执行后续的拷贝操作
+  webDir: 'build'// 默认为"dist",因为sveltekit构建后生成的是"build"目录，所以我需要做相应更改以正确执行后续的拷贝操作
 };
 
 export default config;
@@ -220,7 +218,7 @@ export default config;
 npx cap sync
 ```
 
-![image-20240808230816735](.\2024-8-8-pictures\image-20240808230816735.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808230816735.png" alt="image-20240808230816735" />
 
 **执行成功后可见目录"`/android/app/src/main/assets/public/`"下拷贝过来的web项目**
 
@@ -228,30 +226,52 @@ npx cap sync
 
 ### 回到Android studio,打开安卓项目，打开项目文件后会自动执行build操作
 
-![image-20240808231225765](.\2024-8-8-pictures\image-20240808231225765.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808231225765.png" alt="image-20240808231225765" />
 
-![image-20240808231238265](.\2024-8-8-pictures\image-20240808231238265.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808231238265.png" alt="image-20240808231238265" />
 
-**可点击下方"Build"查看build情况，若在build过程中遇到网络问题，可参照上面提供的方案进行解决**
+**可点击下方"Build"查看build情况，若在build过程中遇到网络问题，可参照上面提供的<a href="#因网络问题无法正常下载sdk等解决方案">方案</a>尝试解决**
 
-![image-20240808231336005](.\2024-8-8-pictures\image-20240808231336005.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808231336005.png" alt="image-20240808231336005" />
 
-![image-20240808231413195](.\2024-8-8-pictures\image-20240808231413195.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808231413195.png" alt="image-20240808231413195" />
 
 ### 打包成发布版本apk
 
-![image-20240808232501498](.\2024-8-8-pictures\image-20240808232501498.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808232501498.png" alt="image-20240808232501498" />
 
-![image-20240808232507805](.\2024-8-8-pictures\image-20240808232507805.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808232507805.png" alt="image-20240808232507805" />
 
-![image-20240808232515825](.\2024-8-8-pictures\image-20240808232515825.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808232515825.png" alt="image-20240808232515825" />
 
-![image-20240808232535833](.\2024-8-8-pictures\image-20240808232535833.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808232535833.png" alt="image-20240808232535833" />
 
-![image-20240808231508262](.\2024-8-8-pictures\image-20240808231508262.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808231508262.png" alt="image-20240808231508262" />
 
-![image-20240808231511006](.\2024-8-8-pictures\image-20240808231511006.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808231511006.png" alt="image-20240808231511006" />
 
-![image-20240808232156964](.\2024-8-8-pictures\image-20240808232156964.png)
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240808232156964.png" alt="image-20240808232156964" />
 
 **Apk生成位置: `/android/app/build/outputs/apk/release/*.apk`**
+
+### 生成的发布Apk是未签名的，不可直接安装，需要进行签名
+
+**官方文档（需科学上网）:[Sign your app  | Android Studio  | Android Developers](https://developer.android.com/studio/publish/app-signing#sign-apk)**
+
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240809121156622.png" alt="image-20240809121156622" />
+
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240809121233797.png" alt="image-20240809121233797" />
+
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240809121311962.png" alt="image-20240809121311962" />
+
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240809121622323.png" alt="image-20240809121622323" />
+
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240809121605244.png" alt="image-20240809121605244" />
+
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240809121702618.png" alt="image-20240809121702618" />
+
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240809121707206.png" alt="image-20240809121707206" />
+
+<img src="./2024-8-8-WebAppToAndroidApp.assets/image-20240809121825621.png" alt="image-20240809121825621" />
+
+### 最后，即可使用真机或安卓模拟器安装已签名的apk进行测试或使用
