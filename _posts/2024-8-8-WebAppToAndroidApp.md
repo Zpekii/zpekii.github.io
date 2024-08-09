@@ -1,12 +1,10 @@
 ---
-title:Web App To Android native App
-author:Zpekii
-tags:[android,web,ionic,capacitor,svelte]
-categories:[dev,android,web,ionic,capacitor]
-description:如何使用capaitor将web app 封装成android app,即封装成可安装的apk
+title: Web App To Android native App
+author: Zpekii
+tags: [android,web,ionic,capacitor,svelte]
+categories: [dev,android,web,ionic,capacitor]
+description: 如何使用capaitor将web app 封装成android app,即封装成可安装的apk
 ---
-
-
 
 # Web APP到Android 原生APP
 
