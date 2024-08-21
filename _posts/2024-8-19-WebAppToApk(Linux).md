@@ -267,5 +267,17 @@ ENV PATH=$PATH:/usr/lib/jvm/default-jvm/bin
   echo "apk build SUCCESSFUL!"
   ```
 
-  
+- 给予脚本文件可执行权限
+
+- ```sh
+  chmod +x ./android_release.sh
+  ```
+
+- 执行脚本
+
+- ```sh
+  ./android_release.sh
+  ```
+
+- 若执行成功，最后会打印"apk build SUCCESSFUL!"，以及在 `/android/app/build/outputs/apk/build/release/`目录下可以看到构建好的 `myapp.apk`文件
 
