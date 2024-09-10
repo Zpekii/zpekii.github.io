@@ -117,7 +117,7 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: zpekii/zpekii.github.io# <gh-username>/<repo>
+    repo: Zpekii/zpekii.github.io # <gh-username>/<repo>
     repo_id: R_kgDOMJ0Diw
     category: Announcements
     category_id: DIC_kwDOMJ0Di84CiWej
