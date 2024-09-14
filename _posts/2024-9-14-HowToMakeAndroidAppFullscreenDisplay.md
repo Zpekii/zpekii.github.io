@@ -123,6 +123,6 @@ categories: [android]
 
 **安卓文档**:
 
-- [支持刘海屏  | Views  | Android Developers](https://developer.android.com/develop/ui/views/layout/display-cutout?hl=zh-cn)
-- [Activity  | Android Developers](https://developer.android.com/reference/android/app/Activity)
+- [Android Developers:支持刘海屏: Views ](https://developer.android.com/develop/ui/views/layout/display-cutout?hl=zh-cn)
+- [Android Developers:Activity](https://developer.android.com/reference/android/app/Activity)
 
