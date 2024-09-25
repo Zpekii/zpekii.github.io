@@ -78,6 +78,85 @@ description: 创建github.io page
             ubuntu:jekyll bash
     ```
 
+  - **注:** 配置文件`profile`需要自行创建,我这里选择在`$HOME/bin/conf/node/`下进行创建,可以与示例不一致，满足需要即可
+
+    - 内容如下:
+
+    - ```
+      #!/bin/sh
+      DATA_PATH=/var/data
+      BIN_PATH=/var/data/kApps
+      DEPLOY_PATH=/var/deploy
+      
+      export CMAKE_HOME=$BIN_PATH/cmake
+      
+      export GOROOT=$BIN_PATH/goLang
+      export GOPATH=$DATA_PATH/kUser/goUser
+      export GOPROXY=https://goproxy.cn,direct
+      export GOSUMDB=sum.golang.google.cn
+      
+      export NODE_HOME=$BIN_PATH/node
+      export PNPM_HOME=/var/data/pnpm
+      
+      export ANDROID_SDK_ROOT=$BIN_PATH/android_sdk
+      export ANDROID_HOME=$BIN_PATH/android_sdk
+      
+      # PowerShell paths
+      #    $PSHOME is /opt/microsoft/powershell/7/
+      #     The profiles scripts are stored in the following locations:
+      #         AllUsersAllHosts - $PSHOME/profile.ps1
+      #         AllUsersCurrentHost - $PSHOME/Microsoft.PowerShell_profile.ps1
+      #         CurrentUserAllHosts - ~/.config/powershell/profile.ps1
+      #         CurrentUserCurrentHost - ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+      #     Modules are stored in the following locations:
+      #         User modules - ~/.local/share/powershell/Modules
+      #         Shared modules - /usr/local/share/powershell/Modules
+      #         Default modules - $PSHOME/Modules
+      #     PSReadLine history is recorded in ~/.local/share/powershell/PSReadLine/ConsoleHost_history.txt
+      
+      source /etc/os-release
+      
+      if [ "$ID" = "alpine" ];then
+        export PSHOME=/var/data/kApps/powershell_linux_musl_x64
+      else
+        export PSHOME=/var/data/kApps/powershell_linux_x64
+      fi
+      
+      if [ ! -f "${PSHOME}/profile.ps1" ];then
+        echo "function Prompt {\"\$(Get-Location): \"}">"${PSHOME}/profile.ps1"
+      fi
+      
+      mkdir -p $PNPM_HOME
+      
+      export PATH="$BIN_PATH/python/bin:$CMAKE_HOME/bin:$PSHOME:$GOPATH/bin:$GOROOT/bin:$NODE_HOME/bin:$PNPM_HOME:$BIN_PATH/bin:$BIN_PATH/docker:$PATH"
+      
+      if [ -z "$(which pnpm)" ];then
+        npm install -g pnpm
+      fi
+      
+      pnpm config set store-dir "$PNPM_HOME"
+      pnpm config set registry https://registry.npmmirror.com
+      
+      git config --global credential.helper store
+      git config --global user.email "3156752796@qq.com"
+      git config --global user.name "Zpekii"
+      
+      alias python=python3.12
+      alias pip=pip3.12
+      
+      alias python3=python3.12
+      alias pip3=pip3.12
+      alias la="ls -A"
+      # Install Ruby Gems to ~/gems
+      export GEM_HOME="$HOME/gems"
+      export PATH="$ANDROID_SDK_ROOT/build-tools/34.0.0/:$NODE_HOME/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$HOME/var/data/kApps:$HOME/gems/bin:$PATH"
+      # Install Ruby Gems to ~/gems
+      export GEM_HOME="$HOME/gems"
+      export PATH="$HOME/gems/bin:$PATH"
+      ```
+
+      
+
 - 进入到`username.github.io`项目文件，执行
 
   - ```bash

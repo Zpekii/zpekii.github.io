@@ -1,5 +1,5 @@
 ---
-titile: 如何使安卓app适配全面屏手机实现完全全屏显示
+title: 如何使安卓app适配全面屏手机实现完全全屏显示
 author: Zpekii
 tags: [android]
 categories: [android]
