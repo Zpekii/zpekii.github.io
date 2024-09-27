@@ -163,15 +163,31 @@ categories: [android,cross compile,nginx]
 
 - 执行`export CC=$TOOLCHAINS/armv7a-linux-androideabi34-clang`设置C语言编译器（C Compiler）环境变量
 
-  - ```shell
-    export CC=$TOOLCHAINS/armv7a-linux-androideabi34-clang
-    ```
+  - Arm 32:
+
+    - ```shell
+      export CC=$TOOLCHAINS/armv7a-linux-androideabi34-clang
+      ```
+
+  - Arm 64:
+
+    - ```shell
+      export CC=$TOOLCHAINS/aarch64-linux-android34-clang
+      ```
 
 - 执行`export CPP=$TOOLCHAINS/armv7a-linux-androideabi34-clang++`设置C++编译器环境变量
 
-  - ```shell
-    export CPP=$TOOLCHAINS/armv7a-linux-androideabi34-clang++
-    ```
+  - Arm 32:
+
+    - ```shell
+      export CPP=$TOOLCHAINS/armv7a-linux-androideabi34-clang++
+      ```
+
+  - Arm 64:
+
+    - ```shell
+      export CPP=$TOOLCHAINS/aarch64-linux-android34-clang++
+      ```
 
 - 执行`export ZLIB=/var/data/src/zlib-1.3.1`设置压缩库环境变量
 
@@ -181,15 +197,27 @@ categories: [android,cross compile,nginx]
 
 - 一条指令设置所有环境变量
 
-  - ```shell
-    export NDK=/var/data/src/android-ndk-r27 \
-    export TOOLCHAINS=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin \
-    export CC=$TOOLCHAINS/armv7a-linux-androideabi34-clang \
-    export CPP=$TOOLCHAINS/armv7a-linux-androideabi34-clang++ \
-    export ZLIB=/var/data/src/zlib-1.3.1
-    ```
+  - Arm 32位:
 
-    
+    - ```shell
+      export NDK=/var/data/src/android-ndk-r27 \
+      export TOOLCHAINS=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin \
+      export CC=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi34-clang \
+      export CPP=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi34-clang++ \
+      export ZLIB=/var/data/src/zlib-1.3.1
+      ```
+
+
+  - Arm 64位
+
+    - ```shell
+      export NDK=/var/data/src/android-ndk-r27 \
+      export TOOLCHAINS=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin \
+      export CC=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang \
+      export CPP=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang++ \
+      export ZLIB=/var/data/src/zlib-1.3.1	
+      ```
+
 
 ### 设置Nginx交叉编译配置
 
@@ -225,6 +253,8 @@ categories: [android,cross compile,nginx]
 
       - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925221458453.png" alt="image-20240925221458453" />
 
+    - **如果是arm64则修改为8**
+
     - 注释掉原来的ngx_size=`$NGX_AUTOTEST` ,然后写上`ngx_size=4`
 
       - ```
@@ -233,6 +263,8 @@ categories: [android,cross compile,nginx]
         ```
 
       - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925221434072.png" alt="image-20240925221434072" />
+
+    - **如果是arm64则修改为8**
 
     - 修改`ngx_test`
 
