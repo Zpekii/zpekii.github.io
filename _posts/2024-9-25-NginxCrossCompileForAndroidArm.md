@@ -265,7 +265,7 @@ categories: [android,cross compile,nginx]
 
 ### 修改部分Nginx配置文件使编译成功
 
-- #### 执行`nano ./objs.Makefile`修改Makefile
+- #### 执行`nano ./objs/Makefile`修改Makefile
 
   - 移除`Werror`
     - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925222803630.png" alt="image-20240925222803630" />
@@ -276,7 +276,7 @@ categories: [android,cross compile,nginx]
 
   - Ctrl+X加输入y加回车退出编辑，返回命令行
 
-  - 执行`nano ./objs/ngx_auto/config.h`在最后添加以下代码
+  - 执行`nano ./objs/ngx_auto_config.h`在最后添加以下代码
 
     - ```c
       #ifndef NGX_SYS_NERR
