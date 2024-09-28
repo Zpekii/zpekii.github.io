@@ -195,6 +195,12 @@ categories: [android,cross compile,nginx]
     export ZLIB=/var/data/src/zlib-1.3.1
     ```
 
+- 执行`export NGINX_PATH=/data/data/com.example.www/nginx`设置`nginx`保存路径(这里是设置成在安卓中可访问和执行命令的目录),**其中`com.example.www`为包名需要自行设定和安卓应用包名一致**
+
+  - ```shell
+    export NGINX_PATH=/data/data/com.example.www/nginx
+    ```
+  
 - 一条指令设置所有环境变量
 
   - Arm 32位:
@@ -204,19 +210,22 @@ categories: [android,cross compile,nginx]
       export TOOLCHAINS=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin \
       export CC=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi34-clang \
       export CPP=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi34-clang++ \
-      export ZLIB=/var/data/src/zlib-1.3.1
+      export ZLIB=/var/data/src/zlib-1.3.1 \
+      export NGINX_PATH=/data/data/com.example.www/nginx
       ```
 
 
-  - Arm 64位
+    - Arm 64位
 
-    - ```shell
-      export NDK=/var/data/src/android-ndk-r27 \
-      export TOOLCHAINS=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin \
-      export CC=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang \
-      export CPP=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang++ \
-      export ZLIB=/var/data/src/zlib-1.3.1	
-      ```
+      - ```shell
+        export NDK=/var/data/src/android-ndk-r27 \
+        export TOOLCHAINS=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin \
+        export CC=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang \
+        export CPP=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang++ \
+        export ZLIB=/var/data/src/zlib-1.3.1 \
+        export NGINX_PATH=/data/data/com.example.www/nginx
+        ```
+
 
 
 ### 设置Nginx交叉编译配置
@@ -288,7 +297,7 @@ categories: [android,cross compile,nginx]
 - 然后执行以下指令
 
   - ```
-    ./configure --with-http_ssl_module --with-cc=$CC --with-cpp=$CPP --with-pcre=/var/data/src/pcre-8.45 --with-openssl=/var/data/src/openssl-openssl-3.3.2 --with-zlib=$ZLIB --without-http_gzip_module --without-http_upstream_zone_module --without-stream_upstream_zone_module --with-cc-opt="-Wsign-compare"
+    ./configure --prefix=$NGINX_PATH --with-http_ssl_module --with-cc=$CC --with-cpp=$CPP --with-pcre=/var/data/src/pcre-8.45 --with-openssl=/var/data/src/openssl-openssl-3.3.2 --with-zlib=$ZLIB --without-http_gzip_module --without-http_upstream_zone_module --without-stream_upstream_zone_module --with-cc-opt="-Wsign-compare"
     ```
 
   - 执行成功截图
