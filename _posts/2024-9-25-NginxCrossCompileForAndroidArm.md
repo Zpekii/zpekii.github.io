@@ -195,10 +195,10 @@ categories: [android,cross compile,nginx]
     export ZLIB=/var/data/src/zlib-1.3.1
     ```
 
-- 执行`export NGINX_PATH=/data/data/com.example.www/nginx`设置`nginx`保存路径(这里是设置成在安卓中可访问和执行命令的目录),**其中`com.example.www`为包名需要自行设定和安卓应用包名一致**
+- 执行`export NGINX_PATH=/data/data/com.example.www/nginx/nginx`设置`nginx`保存路径(这里是设置成在安卓中可访问和执行命令的目录),**其中`com.example.www`为包名需要自行设定和安卓应用包名一致**
 
   - ```shell
-    export NGINX_PATH=/data/data/com.example.www/nginx
+    export NGINX_PATH=/data/data/com.example.www/nginx/nginx
     ```
   
 - 一条指令设置所有环境变量
@@ -211,19 +211,19 @@ categories: [android,cross compile,nginx]
       export CC=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi34-clang \
       export CPP=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi34-clang++ \
       export ZLIB=/var/data/src/zlib-1.3.1 \
-      export NGINX_PATH=/data/data/com.example.www/nginx
+      export NGINX_PATH=/data/data/com.example.www/nginx/nginx
       ```
 
 
     - Arm 64位
-
+    
       - ```shell
         export NDK=/var/data/src/android-ndk-r27 \
         export TOOLCHAINS=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin \
         export CC=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang \
         export CPP=/var/data/src/android-ndk-r27/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang++ \
         export ZLIB=/var/data/src/zlib-1.3.1 \
-        export NGINX_PATH=/data/data/com.example.www/nginx
+        export NGINX_PATH=/data/data/com.example.www/nginx/nginx
         ```
 
 
@@ -308,6 +308,10 @@ categories: [android,cross compile,nginx]
 
 - #### 执行`nano ./objs/Makefile`修改Makefile
 
+- ```shell
+  nano ./objs/Makefile
+  ```
+
   - 移除`Werror`
     - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925222803630.png" alt="image-20240925222803630" />
 
@@ -319,6 +323,10 @@ categories: [android,cross compile,nginx]
 
   - 执行`nano ./objs/ngx_auto_config.h`在最后添加以下代码
 
+  - ```shell
+    nano ./objs/ngx_auto_config.h
+    ```
+    
     - ```c
       #ifndef NGX_SYS_NERR
       #define NGX_SYS_NERR  132
@@ -328,7 +336,7 @@ categories: [android,cross compile,nginx]
       #define NGX_HAVE_SYSVSHM 1
       #endif
       ```
-
+    
       <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925223410627.png" alt="image-20240925223410627" />
 
 - 执行`nano ./src/os/unix/ngx_user.c`修改Nginx源代码文件`src/os/unix/ngx_user.c`
@@ -337,7 +345,7 @@ categories: [android,cross compile,nginx]
 
     - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925224311840.png" alt="image-20240925224311840" />	
 
-  - 修改调用,Ctrl+W搜索``
+  - 修改调用,Ctrl+W搜索`value = crypt((char *) key, (char *) salt);`
 
     - ```
       value = crypt((char *) key, (char *) salt);
@@ -367,7 +375,7 @@ make
 
 <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925225225996.png" alt="image-20240925225225996" />
 
-### 安装路径默认在`/usr/local/nginx`,至此就成功完成Nginx的交叉编译Android Arm架构版本，可执行`cp -r /usr/local/nginx /mnt`将nginx拷贝到主机文件系统
+### Nginx安装路径在`/data/data/com.example.www/nginx/nginx`（如果没有设置`--prefix=$NGINX_PATH`参数的话，安装路径默认在`/usr/local/nginx`）,至此就成功完成Nginx的交叉编译Android Arm架构版本，可执行`cp -r /data/data/com.example.www/nginx/nginx /mnt`将nginx拷贝到主机文件系统
 
 ## 参考
 
