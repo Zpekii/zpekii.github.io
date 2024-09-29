@@ -291,13 +291,13 @@ categories: [android,cross compile,nginx]
   - 执行`nano ./auto/options`修改
 
     - Ctrl+W快捷键进行搜索`PCRE_CONF_OPT`
-    - 设置`PCRE_CONF_OPT`值为`--host=armv7a-linux`
+    - 设置`PCRE_CONF_OPT`值为`--host=arm-linux-androideabi` 
     - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925221931174.png" alt="image-20240925221931174" />
 
 - 然后执行以下指令
 
   - ```
-    ./configure --crossbuild=android-arm --prefix=$NGINX_PATH --with-http_ssl_module --with-cc=$CC --with-cpp=$CPP --with-pcre=/var/data/src/pcre-8.45 --with-openssl=/var/data/src/openssl-openssl-3.3.2 --with-zlib=$ZLIB --without-http_gzip_module --without-http_upstream_zone_module --without-stream_upstream_zone_module --with-ld-opt="-pie -fPIE" --with-cc-opt="-Wno-sign-compare -fPIE -fPIC"
+    ./configure --crossbuild=android-arm --prefix=$NGINX_PATH --with-http_ssl_module --with-cc=$CC --with-cpp=$CPP --with-pcre=/var/data/src/pcre-8.45 --with-openssl=/var/data/src/openssl-openssl-3.3.2 --with-zlib=$ZLIB --without-http_gzip_module --without-http_upstream_zone_module --without-stream_upstream_zone_module --with-ld-opt="-pie -fPIE" --with-cc-opt="-Wno-sign-compare -pie -fPIE -fPIC" --without-http_userid_module
     ```
 
   - 执行成功截图
@@ -315,12 +315,8 @@ categories: [android,cross compile,nginx]
   - 移除`Werror`
     - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925222803630.png" alt="image-20240925222803630" />
 
-  - 在`LINK =  $(CC)`添加参数`-shared`
-    
-    - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240929105415852.png" alt="image-20240929105415852" />
-
   - Crtl+W搜索`./config --prefix=/var/data/src/openssl-openssl-3.3.2/.openssl no-shared no-threads`
-
+  
     - 添加`no-asm`参数
       - <img src="assets/img/2024-9-25-NginxCrossCompileForAndroidArm.assets/image-20240925222959137.png" alt="image-20240925222959137" />
   
