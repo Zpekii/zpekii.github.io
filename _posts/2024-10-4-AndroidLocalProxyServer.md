@@ -686,6 +686,101 @@ categories: [Golang,Android,reverse proxy]
 
 ### 运行代码示例
 
+- `app/main/res/values/styles.xml`
+
+  - ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+    
+        <!-- Base application theme. -->
+        <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+            <!-- Customize your theme here. -->
+            <item name="colorPrimary">@color/colorPrimary</item>
+            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+            <item name="colorAccent">@color/colorAccent</item>
+        </style>
+    
+        <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+            <item name="android:background">@null</item>
+        </style>
+    
+    
+        <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+            <item name="android:background">@drawable/splash</item>
+        </style>
+    
+        <!--   自定义显示主题: 全屏沉浸显示     -->
+        <style name="FullscreenTheme" parent="AppTheme">
+            <item name="android:windowFullscreen">true</item>
+            <item name="android:windowNoTitle">true</item>
+            <item name="android:windowContentOverlay">@null</item>
+            <item name="android:windowActionBar">false</item>
+            <item name="android:windowLayoutInDisplayCutoutMode">always</item>
+        </style>
+    </resources>
+    ```
+
+- `app/main/AndroidManifest.xml` 安卓清单
+
+  - ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    
+        <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:extractNativeLibs="true"
+            android:usesCleartextTraffic="true"
+            android:theme="@style/AppTheme">
+    
+            <activity
+                android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+                android:name=".MainActivity"
+                android:label="@string/app_name"
+                android:theme="@style/FullscreenTheme"
+                android:launchMode="singleTask"
+                android:exported="true"
+                android:windowLayoutInDisplayCutoutMode="always">
+    
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+    
+            </activity>
+    
+            <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="${applicationId}.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+                <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths"></meta-data>
+            </provider>
+    
+            <!-- 服务声明 -->
+            <service android:name=".LocalServer"/>
+    
+        </application>
+    
+        <!-- Permissions -->
+    
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+        <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA"/>
+    
+    </manifest>
+    
+    ```
+
 - `app/src/main/java/com.example.www/`下有
 
   - `MainActivity.java`app入口类
