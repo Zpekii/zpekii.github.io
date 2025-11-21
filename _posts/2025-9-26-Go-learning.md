@@ -7,8 +7,6 @@ categories: [Learning, Golang]
 
 # GMP 模型
 
-<img src="assets/img/2025-9-26-Go-learning.assets/GMP.png" alt="GMP" />
-
 ![GMP](../assets/img/2025-9-26-Go-learning.assets/GMP.png)
 
 ## G、M、P分别指什么
@@ -69,8 +67,6 @@ slice 底层是由
 
 ### 切片扩容流程
 
-<img src="assets/img/2025-9-26-Go-learning.assets/Go%20slice%E6%89%A9%E5%AE%B9%E6%B5%81%E7%A8%8B.png" alt="Go slice扩容流程" />
-
 ![Go slice扩容流程](../assets/img/2025-9-26-Go-learning.assets/Go%20slice%E6%89%A9%E5%AE%B9%E6%B5%81%E7%A8%8B.png)
 
 #### 什么时候会触发扩容
@@ -87,8 +83,6 @@ golang map的底层数据结构是哈希表
 
 ### 存储过程
 
-<img src="assets/img/2025-9-26-Go-learning.assets/map.png" alt="map" />
-
 <img src="../assets/img/2025-9-26-Go-learning.assets/map.png" alt="map" />
 
 ### 哈希冲突发生和处理
@@ -96,8 +90,6 @@ golang map的底层数据结构是哈希表
 当插入的 key 经过哈希计算得到的桶号后，在遍历桶的槽位(tophash)时发现不为空，此时就是发生了哈希冲突，处理方式就是向后遍历，找到下一个空的槽位放入，如果当前桶所有的槽位都不为空，那么就会创建一个溢出桶，然后放入溢出桶的第一个槽位上
 
 # channel 管道
-
-<img src="assets/img/2025-9-26-Go-learning.assets/channel.png" alt="channel" />
 
 ![channel](../assets/img/2025-9-26-Go-learning.assets/channel.png)
 
@@ -111,15 +103,9 @@ CSP 思想简单来说就是不要通过共享内存来实现通信，相反的�
 
 ### 底层结构
 
-主要由
-
-
-
 
 
 # GC 垃圾回收
-
-<img src="assets/img/2025-9-26-Go-learning.assets/Go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.png" alt="Go垃圾回收" />
 
 ![Go垃圾回收](../assets/img/2025-9-26-Go-learning.assets/Go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.png)
 
