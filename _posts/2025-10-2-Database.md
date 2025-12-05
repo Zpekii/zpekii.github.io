@@ -42,7 +42,7 @@ Postgres 中的 VACUUM 命令主要用于清理数据库中在执行插入、更
 
 ### Postgres 备份
 
-逻辑备份采用 pg_dump 内置工具，恢复采用 pg_restore
+逻辑备份采用 pg_dump(不会造成阻塞) 内置工具，恢复采用 pg_restore
 
 物理备份(PITR, point-in-time recovery)采用 pg_basebackup 工具，通过配置 postgresql.conf 恢复指令执行拷贝WAL(Write Ahead Logging)归档日志(restore_command)和指定的目标时间节点(recover_target_time)来完成恢复
 
@@ -154,16 +154,16 @@ Postgres 中的 VACUUM 命令主要用于清理数据库中在执行插入、更
 
 冲突的锁模式
 
-从弱到强，“X”表示**不可同时持有**，所之间存在冲突
+从弱到强，“X”表示**不可同时持有**，锁之间存在冲突
 
 | 请求的锁模式                 | 触发的场景                                                   | `ACCESS SHARE` | `ROW SHARE` | `ROW EXCLUSIVE` | `SHARE UPDATE EXCLUSIVE` | `SHARE` | `SHARE ROW EXCLUSIVE` | `EXCLUSIVE` | `ACCESS EXCLUSIVE` |
 | ---------------------------- | ------------------------------------------------------------ | -------------- | :---------: | --------------- | :----------------------: | :-----: | :-------------------: | :---------: | :----------------: |
 | `ACCESS SHARE`(**访问共享**) | 执行`SELECT`读取表内容而不修改表时                           |                |             |                 |                          |         |                       |             |         X          |
 | `ROW SHARE`(行共享)          | `SELECT`命令在所有指定了`FOR UPDATE`、 `FOR NO KEY UPDATE`、`FOR SHARE`或 `FOR KEY SHARE`选项的表上时 |                |             |                 |                          |         |                       |      X      |         X          |
 | `ROW EXCLUSIVE`(**行排他**)  | 执行`UPDATE`、`DELETE`、`INSERT`和 `MERGE` 时                |                |             |                 |                          |    X    |           X           |      X      |         X          |
-| `SHARE UPDATE EXCLUSIVE`     | 执行`VACUUM`（不使用`FULL`）， `ANALYZE`，`CREATE INDEX CONCURRENTLY`， `CREATE STATISTICS`，`COMMENT ON`， `REINDEX CONCURRENTLY`， 以及某些[`ALTER INDEX`](http://postgres.cn/docs/17/sql-alterindex.html) 和[`ALTER TABLE`](http://postgres.cn/docs/17/sql-altertable.html)变体时 |                |             |                 |            X             |    X    |           X           |      X      |         X          |
+| `SHARE UPDATE EXCLUSIVE`     | 执行`VACUUM`（不使用`FULL`）， `ANALYZE`，`CREATE INDEX CONCURRENTLY`， `CREATE STATISTICS`，`COMMENT ON`， `REINDEX CONCURRENTLY`， 以及某些[ALTER INDEX](http://postgres.cn/docs/17/sql-alterindex.html) 和[ALTER TABLE](http://postgres.cn/docs/17/sql-altertable.html)变体时 |                |             |                 |            X             |    X    |           X           |      X      |         X          |
 | `SHARE`(**共享锁**)          | 执行`CREATE INDEX`（不带`CONCURRENTLY`）时                   |                |             | X               |            X             |         |           X           |      X      |         X          |
-| `SHARE ROW EXCLUSIVE`        | 执行`CREATE TRIGGER`和某些形式的 [`ALTER TABLE`](http://postgres.cn/docs/17/sql-altertable.html) |                |             | X               |            X             |    X    |           X           |      X      |         X          |
+| `SHARE ROW EXCLUSIVE`        | 执行`CREATE TRIGGER`和某些形式的 [ALTER TABLE](http://postgres.cn/docs/17/sql-altertable.html) |                |             | X               |            X             |    X    |           X           |      X      |         X          |
 | `EXCLUSIVE`(**排他锁**)      | 执行`REFRESH MATERIALIZED VIEW CONCURRENTLY`时               |                |      X      | X               |            X             |    X    |           X           |      X      |         X          |
 | `ACCESS EXCLUSIVE`           | 执行`ALTER TABLE`、`DROP TABLE`、`TRUNCATE`、`REINDEX`、`CLUSTER`、`VACUUM FULL`和`REFRESH MATERIALIZED VIEW`（不带`CONCURRENTLY`），以及**很多形式**的`ALTER INDEX`和`ALTER TABLE`也在这个层面上获得锁（见[ALTER TABLE](http://postgres.cn/docs/17/sql-altertable.html)）时，同时这也是未显式指定模式的`LOCK TABLE`命令的**默认锁模式** | X              |      X      | X               |            X             |    X    |           X           |      X      |         X          |
 
@@ -278,3 +278,55 @@ Redis 默认的策略是不进行淘汰，当写入的缓存达到预设的最�
 
 最后的**缓存穿透**是指某一时刻突然有大量请求访问既不在缓存中也不在数据库中的数据，导致数据库压力骤增的问题；我们可以采取**对非法请求进行限制**、设置空值或默认值直接返回给应用或者是**使用布隆过滤器快速判断数据是否有效**的方案去解决这个问题
 
+
+
+### Redis 分布式锁
+
+#### 应用场景
+
+当多个**应用**共享一个资源时，确保**同一时刻只有一个应用**进行访问和使用
+
+#### 原理
+
+使用`SET`命令，在设置 key 时，添加参数`NX`，来实现 **key 不存在时才插入** 的效果，即当
+
+- key 存在时，显示插入失败，表示加锁失败
+- key 不存在时，显示插入成功，表示加锁成功
+
+**加锁操作:**
+
+执行命令
+
+```sh
+SET lock_key lock_unique_value NX PX 10000
+```
+
+描述:
+
+- `lock_key`为 key 键
+- `lock_unique_value`为客户端生成的唯一标识，用于区分不同的客户端的锁操作
+- `NX`参数为设定只有在 key 不存在时才插入
+- `PX`参数为设定过期时间，以避免客户端因发生异常导致锁无法被释放，`PX 10000`设定过期时间为 10s
+
+**释放操作:**
+
+通过执行一个 Lua 脚本来保证解锁操作的原子性，在 Redis 中，可以以原子的方式执行 Lua 脚本
+
+```lua
+if redis.call("get", KEYS[1]) == ARGV[1] then
+    return redis.call("del", KEYS[1])
+else
+    return 0
+end
+```
+
+描述:
+
+- 先判断当前存储的唯一标识是否与当前客户端的标识一致，确保“谁加的锁就谁释放”，避免锁的误释放
+- 然后再执行删除 key 操作
+
+### 数据库和缓存一致性
+
+采取策略: **先更新数据库数据， 再删除缓存**
+
+理由: **数据库写入所需时间 > 缓存更新所需时间**，大部分情况下不会出现先执行的数据库更新请求比后执行数据库更新的请求还晚执行缓存更新
