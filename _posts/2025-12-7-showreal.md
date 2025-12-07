@@ -20,7 +20,7 @@ pin: true
 
 # CNC 计算/仿真网站
 
-> 发布地址: https://cal.0orz.top/Macro
+> 发布地址: [CNC Web](https://cal.0orz.top/Macro)
 
 项目简介: 主导与企业合作开发的计算和仿真网站
 
