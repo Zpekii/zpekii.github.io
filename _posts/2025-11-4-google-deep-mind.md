@@ -79,7 +79,7 @@ $$
 
 ### 图例
 
-<img src=../assets/img/2025-11-4-google-deep-mind.assets/N-grams.png alt="N-grams 图例"></img>
+![N-grams 图例](../assets/img/2025-11-4-google-deep-mind.assets/N-grams.png)
 
 ### N-grams 模型的局限性
 
