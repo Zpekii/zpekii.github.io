@@ -13,7 +13,7 @@ categories: [GitOps, flux]
 
 ### 什么是 GitOps
 
-**GitOps** 是一种实现**云原生应用持续部署**的方法。核心是使用我们熟知的 **[Git]([Git](https://git-scm.com/))** 工具，在一个包含了我们应用的基础设施的声明性描述(比如 [k8s deployment.yaml]([Deployments | Kubernetes](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/deployment/)))的 **Git** 仓库中，完成自动化流程部署；在我们需要在集群上部署新应用或更新现有应用时，就只需要在 **Git** 仓库上提交就行了。
+**GitOps** 是一种实现**云原生应用持续部署**的方法。核心是使用我们熟知的 **[Git](https://git-scm.com/)** 工具，在一个包含了我们应用的基础设施的声明性描述(比如 [k8s deployment.yaml]([Deployments | Kubernetes](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/deployment/)))的 **Git** 仓库中，完成自动化流程部署；在我们需要在集群上部署新应用或更新现有应用时，就只需要在 **Git** 仓库上提交就行了。
 
 ### 为什么要搭建 GitOps
 
