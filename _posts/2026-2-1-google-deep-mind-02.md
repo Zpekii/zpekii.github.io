@@ -1,5 +1,5 @@
 ---
-title: Google DeepMind 学习系列笔记
+title: Google DeepMind 学习系列笔记-02
 author: Zpekii
 tags: [AI]
 categories: [Learning,AI]
