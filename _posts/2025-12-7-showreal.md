@@ -8,7 +8,7 @@ pin: true
 
 # Comic Gen漫画生成网站(开源)
 
-> 发布地址: [Comic Gen](https://comicgen.0orz.top:6443)
+> 发布地址: [Comic Gen](https://comicgen.0orz.top:6443)（已下线)
 
 项目简介: 7天内开发的网站MVP
 
@@ -27,3 +27,7 @@ pin: true
 功能模块: 基础计算+G代码仿真模拟
 
 计算栈: Vue 3 + Python + Flask + Docker
+
+#  个人代码仓库
+
+线上地址: https://git.0orz.top
