@@ -6,7 +6,7 @@ pin: true
 
 > 按时间从晚到早
 >
-> **个人代码仓库：**https://git.0orz.top/explore/repos
+> **个人代码仓库：** [Zpekii • Gitea](https://git.0orz.top/explore/repos)
 
 # Comic Gen漫画生成网站(开源)
 
