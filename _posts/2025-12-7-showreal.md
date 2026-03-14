@@ -5,6 +5,8 @@ pin: true
 ---
 
 > 按时间从晚到早
+>
+> **个人代码仓库：**https://git.0orz.top/explore/repos
 
 # Comic Gen漫画生成网站(开源)
 
@@ -27,7 +29,3 @@ pin: true
 功能模块: 基础计算+G代码仿真模拟
 
 计算栈: Vue 3 + Python + Flask + Docker
-
-#  个人代码仓库
-
-线上地址: https://git.0orz.top
